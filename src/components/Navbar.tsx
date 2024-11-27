@@ -1,10 +1,11 @@
 import { Car, Heart, Menu, Search, User } from 'lucide-react';
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isActive = (path: string) => {
     return location.pathname === path ? "text-blue-600" : "text-gray-700 hover:text-blue-600";
@@ -34,7 +35,11 @@ export default function Navbar() {
             <button className="p-2 hover:bg-gray-100 rounded-full">
               <Heart className="h-5 w-5 text-gray-600" />
             </button>
-            <button className="p-2 hover:bg-gray-100 rounded-full">
+            <button 
+              onClick={() => navigate('/admin')} 
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              aria-label="Admin Dashboard"
+            >
               <User className="h-5 w-5 text-gray-600" />
             </button>
           </div>
